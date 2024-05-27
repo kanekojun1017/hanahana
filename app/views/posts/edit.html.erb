@@ -1,0 +1,6 @@
+<h1>編集</h1>
+<%= form_with model: @post do |f| %>
+<label>投稿</label>
+ <%=f.text_field :body %>
+ <%= f.submit '更新'%> 
+<% end %>

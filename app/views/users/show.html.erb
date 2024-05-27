@@ -1,0 +1,19 @@
+<h1>会員ページ</h1>
+
+<%= image_tag @user.get_profile_image(100, 100) %> </br>
+</h3><%= @user.name %></h3>
+
+<% unless @user.email != "guest@example.com" %>
+<div class="row">
+  <a href="/users/<%= @user.id %>/edit", class="btn btn-outline-dark"></ahref>
+    <i class="fa-solid fa-user-gear"></i>
+  </a>
+</div>
+<% end %>
+
+
+<h2>投稿一覧</h2>
+<% @posts.each do |post| %>
+  <p>説明: <%= post.body %></p>
+<% end %>
+

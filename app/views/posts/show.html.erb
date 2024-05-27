@@ -1,0 +1,29 @@
+<h2>投稿詳細</h2>
+<p>ユーザー画像</p>
+<%= image_tag @post.user.get_profile_image(80, 80) %>
+
+<p>投稿: <%= @post.body %></p>
+<p>住所:
+ <span><i class="fa-solid fa-location-dot"></i> <%= @post.address %></span>
+</p>
+
+<% if @post.user == current_user %>
+ <%= link_to 'edit', edit_post_path(@post.id)%>
+ <%= link_to 'detroy', post_path(@post.id), method: :delete, 'data-confirm' => '削除しますか?' %>
+<% end %> 
+
+<p>コメント件数：<%= @post.comments.count %></p>
+  <% @post.comments.each do |post_comment| %>
+    <p><%= image_tag post_comment.user.get_profile_image(100,100) %></p>
+    <%= post_comment.user.name %>
+    <%= post_comment.created_at.strftime('%Y/%m/%d') %><br>
+    <%= post_comment.comment %>
+  <% end %>
+</div>
+
+<div>
+  <%= form_with model: [@post, @post_comment] do |f| %>
+    <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに" %><br>
+    <%= f.submit "送信する" %>
+  <% end %>
+</div>
