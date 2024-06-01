@@ -6,6 +6,12 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     @post.user_id = current_user.id
+    
+    result = Geocoder.search(@post.address).first
+    if result
+      @post.latitude = result.latitude
+      @post.longitude = result.longitude
+    end
     @post.save
     redirect_to posts_path
   end
@@ -23,6 +29,7 @@ class PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])
     @post_comment = Comment.new
+    puts "経度: #{@post.longitude}, 緯度: #{@post.latitude}"
   end
 
   def edit
@@ -53,6 +60,6 @@ class PostsController < ApplicationController
   private
   
   def post_params
-    params.require(:post).permit(:body, :address)
+    params.require(:post).permit(:body, :image, :address)
   end
 end

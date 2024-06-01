@@ -1,6 +1,10 @@
-<h1>編集</h1>
+<h1>投稿編集</h1>
 <%= form_with model: @post do |f| %>
-<label>投稿</label>
- <%=f.text_field :body %>
+ <label>投稿</label>
+ <%=f.file_field :image %><br>
+ <label>説明</label>
+ <%=f.text_field :body %><br>
+ <label>住所</label>
+ <%= f.text_field :address %><br>
  <%= f.submit '更新'%> 
 <% end %>

@@ -1,15 +1,16 @@
 <h2>投稿詳細</h2>
 <p>ユーザー画像</p>
 <%= image_tag @post.user.get_profile_image(80, 80) %>
-
-<p>投稿: <%= @post.body %></p>
+<p>投稿画像</p>
+<%= image_tag @post.get_image(80, 80) %>
+<p>説明: <%= @post.body %></p>
 <p>住所:
  <span><i class="fa-solid fa-location-dot"></i> <%= @post.address %></span>
 </p>
 
 <% if @post.user == current_user %>
- <%= link_to 'edit', edit_post_path(@post.id)%>
- <%= link_to 'detroy', post_path(@post.id), method: :delete, 'data-confirm' => '削除しますか?' %>
+ <%= link_to '編集', edit_post_path(@post.id)%>
+ <%= link_to '削除', post_path(@post.id), method: :delete, 'data-confirm' => '削除しますか?' %>
 <% end %> 
 
 <p>コメント件数：<%= @post.comments.count %></p>
@@ -27,3 +28,5 @@
     <%= f.submit "送信する" %>
   <% end %>
 </div>
+<p>緯度<%= @post.latitude %></p>
+<p>経度<%= @post.longitude %></p>
