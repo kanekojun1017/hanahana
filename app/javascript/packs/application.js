@@ -15,8 +15,10 @@ import "popper.js";
 import "bootstrap";
 import "../stylesheets/application"; 
 
-//= require rails-ujs
-//= require activestorage
-//= require turbolinks 
+Rails.start()
+Turbolinks.start()
+ActiveStorage.start()
+
+
 //= require jquery
-//= require_tree .
+//= require jquery_ujs

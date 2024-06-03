@@ -29,7 +29,6 @@ class PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])
     @post_comment = Comment.new
-    puts "経度: #{@post.longitude}, 緯度: #{@post.latitude}"
   end
 
   def edit
@@ -52,14 +51,14 @@ class PostsController < ApplicationController
   end
 
   def destroy
-    @post = Post.find(params[:id])
-    @post.destroy
-    redirect_to posts_path
+   post = Post.find(params[:id])
+   post.destroy
+   redirect_to posts_path
   end
   
   private
   
   def post_params
-    params.require(:post).permit(:body, :image, :address)
+    params.require(:post).permit(:body, :image, :user_id, :address, :latitude, :longitude)
   end
 end

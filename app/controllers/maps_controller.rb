@@ -1,5 +1,4 @@
 class MapsController < ApplicationController
-  def show
-    @post = Post.new
+  def index
   end
 end

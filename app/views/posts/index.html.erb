@@ -17,6 +17,7 @@
         <%= image_tag post.user.get_profile_image(80, 80) %>
       <% end %>
     </td>
+    
     <td>
       <%= image_tag post.get_image(80, 80) %>
     </td>
@@ -25,9 +26,15 @@
         <%= post.body %>
       <% end %>
     </td>
+    <td><%= render "favorites/btn", post: post %></td>
+    <td>コメント数: <%= post.comments.count %></td>
    </tr>
   <% end %>
+  
   </tbody>
+  
  </table>
+ 
+ 
  <div id="map"></div>
  <%= javascript_pack_tag 'map', 'data-turbolinks-track': 'reload' %>
