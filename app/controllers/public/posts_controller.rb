@@ -1,4 +1,5 @@
 class PostsController < ApplicationController
+  before_action :authenticate_user!
   def new
     @post = Post.new
   end
@@ -15,6 +16,7 @@ class PostsController < ApplicationController
     @post.save
     redirect_to posts_path
   end
+  
   def index
     respond_to do |format|
       format.html do

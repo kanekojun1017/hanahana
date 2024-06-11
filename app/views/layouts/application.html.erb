@@ -21,7 +21,7 @@
         </li>
         
         <li>
-          <%= link_to '投稿フォーム', new_post_path %>
+          <%= link_to '投稿ページ', new_post_path %>
         </li>
         
         <li>
@@ -37,7 +37,7 @@
         </li>
         
         <li>
-          <%= link_to "ログアウト", destroy_user_session_path %>
+          <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
         </li>
         
         <li>
@@ -59,6 +59,10 @@
         
       <% end %>
     </header>
+    
+    <div class="d-flex justify-content-center mb-3">
+      <%= render "searches/form" %>
+    </div>
 　  <%= yield %>
 　  
 　</body>

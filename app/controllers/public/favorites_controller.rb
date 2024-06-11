@@ -6,7 +6,11 @@ class FavoritesController < ApplicationController
     favorite.save
     redirect_to posts_path
   end
-
+  
+  def index
+    @favorites = Favorite.all
+  end
+  
   def destroy
     post = Post.find(params[:post_id])
     favorite = current_user.favorites.find_by(post_id: post.id)

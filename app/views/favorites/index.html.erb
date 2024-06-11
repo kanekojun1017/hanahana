@@ -1,0 +1,29 @@
+<h3>お気に入り一覧</h3>
+<table>
+    <thead>
+      <tr>
+        <th>ユーザー画像</th>
+        <th>投稿画像</th>
+        <th>説明</th>
+      </tr>
+    </thead>
+    
+    <tbody>
+    <% current_user.favorites.each do |favorite| %>
+  　　<% if favorite.user && favorite.post %>
+        <tr>
+          <td>
+            <%= image_tag favorite.post.user.get_profile_image(80, 80) %>
+          </td>
+          <td>
+            <%= image_tag favorite.post.get_image(80, 80) %>
+          </td>
+          <td>
+            <%= favorite.post.body %>
+          </td>
+        </tr>
+      <% end %>
+    <% end %>
+    </tbody>
+</table>
+

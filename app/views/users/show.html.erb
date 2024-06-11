@@ -2,6 +2,9 @@
 
 <%= image_tag @user.get_profile_image(100, 100) %> </br>
 <h3><%= @user.name %></h3>
+<h2>フォロー: <%= link_to @user.followings.count, user_followings_path(@user) %></h2>
+<h2>フォロワー数: <%= link_to @user.followers.count, user_followers_path(@user) %></h2>
+
 
 <% unless @user.guest_user? %>
 <div class="row">
@@ -11,6 +14,8 @@
 </div>
 <% end %>
 
+<%= render "relationships/btn", user: @user %><br>
+<%= link_to "お気に入り一覧", post_favorites_path(@user) %>
 
 <h2>投稿一覧</h2>
 <% @posts.each do |post| %>
@@ -20,5 +25,3 @@
   <p>住所: <%= post.address %></p>
   <%= link_to '編集', edit_post_path(post.id)%>
 <% end %>
-
-

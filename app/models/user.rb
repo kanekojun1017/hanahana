@@ -8,7 +8,17 @@ class User < ApplicationRecord
   has_one_attached :profile_image
   has_many :comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
+  #フォローされる側
+  has_many :reverse_of_relationships, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
+  #被フォロー関係を通じて参照->自分をフォローしている人
+  has_many :followers, through: :reverse_of_relationships, source: :follower
   
+  #自分がフォローーする側の関係
+  has_many :relationships, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
+  #与フォロー関係を通じて参照->自分がフォローしている人
+  has_many :followings, through: :relationships, source: :followed
+  
+
   GUEST_USER_EMAIL = "guest@example.com"
   
   def self.guest
@@ -17,8 +27,29 @@ class User < ApplicationRecord
       user.name = "guestuser"
     end
   end
+  
   def guest_user?
     email == GUEST_USER_EMAIL
+  end
+  
+  def self.search_for(content, method)
+    if method == 'perfect'
+      User.where(name: content)
+    elsif method == 'partial'
+      User.where('name LIKE ?', '%' + content)
+    end
+  end
+  
+  def follow(user)
+    relationships.create(followed_id: user.id)
+  end
+  
+  def unfollow(user)
+    relationships.find_by(followed_id: user.id).destroy
+  end
+
+  def following?(user)
+    followings.include?(user)
   end
   
   def get_profile_image(width, height)
