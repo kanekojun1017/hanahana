@@ -1,5 +1,8 @@
-<h1>投稿一覧</h1>
-<table>
+<div class="d-flex justify-content-center md-3">
+  <h1>投稿一覧</h1>
+</div>
+
+<table class="table table-striped">
   <thead>
     <tr>
       <th>ユーザー画像</th>
@@ -26,7 +29,7 @@
         <%= post.body %>
       <% end %>
     </td>
-    <td><%= render "favorites/btn", post: post %></td>
+    <td><%= render "public/favorites/btn", post: post %></td>
     <td>コメント数: <%= post.comments.count %></td>
    </tr>
   <% end %>
@@ -34,3 +37,4 @@
   </tbody>
   
  </table>
+ 

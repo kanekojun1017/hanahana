@@ -1,4 +1,4 @@
-class MapsController < ApplicationController
+class Public::MapsController < ApplicationController
   def index
   end
 end

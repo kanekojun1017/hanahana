@@ -14,56 +14,59 @@
   </head>
   
   <body>
-    <header>
-      <% if user_signed_in? %>
-        <li>
-          <%= link_to 'ホーム', root_path%>
-        </li>
+    <header class="shadow-sm">
+      <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container">
+          <ul class="navbar-nav ml-auto">
+            <% if user_signed_in? %>
+              <li class="nav-item">
+                <%= link_to 'ホーム', root_path, class: 'nav-link text-dark'%>
+              </li>
         
-        <li>
-          <%= link_to '投稿ページ', new_post_path %>
-        </li>
+              <li class="nav-item">
+                <%= link_to '投稿ページ', new_post_path, class: 'nav-link text-dark' %>
+              </li>
         
-        <li>
-          <%= link_to 'マイページ', user_path(current_user.id) %>
-        </li>
+              <li class="nav-item">
+                <%= link_to 'マイページ', user_path(current_user.id), class: 'nav-link text-dark' %>
+              </li>
         
-        <li>
-          <%= link_to 'ユーザー一覧', users_path %>
-        </li>
+              <li class="nav-item">
+                <%= link_to 'ユーザー一覧', users_path, class: 'nav-link text-dark' %>
+              </li>
         
-        <li>
-          <%= link_to '投稿一覧', posts_path %>
-        </li>
+              <li class="nav-item">
+                <%= link_to '投稿一覧', posts_path, class: 'nav-link text-dark' %>
+              </li>
         
-        <li>
-          <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
-        </li>
+              <li class="nav-item">
+                <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'nav-link text-dark' %>
+              </li>
         
-        <li>
-          <%= link_to "マップ", new_post_path %>
-        </li>
+            <% else %>
+            <nav class="navbar navbar-expand-lg navbar-light">
+              <li class="nav-item">
+                <%= link_to "ゲストログイン", users_guest_sign_in_path, method: :post, class: 'nav-link text-dark' %>
+              </li>
         
-      <% else %>
-        <li>
-          <%= link_to "ゲストログイン", users_guest_sign_in_path, method: :post %>
-        </li>
+              <li class="nav-item">
+                <%= link_to "新規登録", new_user_registration_path, class: 'nav-link text-dark' %>
+              </li>
         
-        <li>
-          <%= link_to "新規登録", new_user_registration_path %>
-        </li>
+              <li class="nav-item">
+                <%= link_to "ログイン", new_user_session_path, class: 'nav-link text-dark' %>
+              </li>
         
-        <li>
-          <%= link_to "ログイン", new_user_session_path %>
-        </li>
-        
-      <% end %>
+            <% end %>
+            </nav>
+          </ul>
+        </div>
+      </nav>
     </header>
-    
-    <div class="d-flex justify-content-center mb-3">
-      <%= render "searches/form" %>
-    </div>
+  </body>
+  <div class="d-flex justify-content-center mt-3">
+    <%= render "public/searches/form" %>
+  </div>
 　  <%= yield %>
-　  
-　</body>
+　
 </html>
