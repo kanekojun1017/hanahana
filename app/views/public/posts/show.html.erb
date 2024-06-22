@@ -1,35 +1,81 @@
-<h2>投稿詳細</h2>
-<p>ユーザー画像</p>
-<%= image_tag @post.user.get_profile_image(80, 80) %>
-<p>投稿画像</p>
-<%= image_tag @post.get_image(80, 80) %>
-<p>説明: <%= @post.body %></p>
-<p>住所:
- <span><i class="fa-solid fa-location-dot"></i> <%= @post.address %></span>
-</p>
-
-<% if @post.user == current_user %>
- <%= link_to '編集', edit_post_path(@post.id)%>
- <%= link_to '削除', post_path(@post), method: :delete, data: {confirm: '削除しますか?'} %>
-<% end %> 
-
-<p>コメント件数：<%= @post.comments.count %></p>
-  <% @post.comments.each do |post_comment| %>
-    <p><%= image_tag post_comment.user.get_profile_image(100,100) %></p>
-    <%= post_comment.user.name %>
-    <%= post_comment.created_at.strftime('%Y/%m/%d') %><br>
-    <%= post_comment.comment %>
-    <% if post_comment.user == current_user %>
-      <%= link_to "削除", post_comment_path(@post, post_comment), method: :delete %>
-    <% end %>
-  <% end %>
+<div class="d-flex justify-content-center m-3">
+  <h2>投稿詳細</h2>
 </div>
 
-<div>
-  <%= form_with model: [@post, @post_comment] do |f| %>
-    <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに" %><br>
-    <%= f.submit "送信する" %>
+<div class="d-flex justify-content-center">
+  <p>ユーザー画像</p>
+</div>
+
+<div class="d-flex justify-content-center">
+  <%= image_tag @post.user.get_profile_image(100, 100) %>
+</div>
+
+<div class="d-flex justify-content-center">
+  <p>投稿画像</p>
+</div>
+
+<div class="d-flex justify-content-center">
+  <%= image_tag @post.get_image(100, 100) %>
+</div>
+
+<div class="d-flex justify-content-center">
+  <p>説明: <%= @post.body %></p>
+</div>
+
+<div class="d-flex justify-content-center">
+  <p>住所:
+   <span><i class="fa-solid fa-location-dot"></i> <%= @post.address %></span>
+  </p>
+</div>
+
+<div class="d-flex justify-content-center">
+  <p>緯度<%= @post.latitude %></p>
+  /
+  <p>経度<%= @post.longitude %></p>
+</div>
+
+<div class="d-flex justify-content-center">
+    <% if @post.user == current_user %>
+     <%= link_to '編集', edit_post_path(@post.id)%>
+     /
+     <%= link_to '削除', post_path(@post), method: :delete, data: {confirm: '削除しますか?'} %>
+    <% end %> 
+</div>
+
+<div class="d-flex justify-content-center m-3">
+  <p>コメント件数：<%= @post.comments.count %></p>
+</div>
+
+<% @post.comments.each do |post_comment| %>
+<div class="d-flex justify-content-center">
+  <p><%= image_tag post_comment.user.get_profile_image(100,100) %></p>
+</div>
+
+<div class="d-flex justify-content-center">
+  <%= post_comment.user.name %>
+</div>
+
+<div class="d-flex justify-content-center">
+  <%= post_comment.created_at.strftime('%Y/%m/%d') %>
+</div>  
+
+<div class="d-flex justify-content-center">
+  <%= post_comment.comment %>
+</div>    
+
+<div class="d-flex justify-content-center">
+  <% if post_comment.user == current_user %>
+    <%= link_to "コメントを削除", post_comment_path(@post, post_comment), method: :delete, data: { confirm: '削除しますか？' } %>
   <% end %>
 </div>
-<p>緯度<%= @post.latitude %></p>
-<p>経度<%= @post.longitude %></p>
+<% end %>
+
+<%= form_with model: [@post, @post_comment] do |f| %>
+<div class="d-flex justify-content-center">
+  <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに" %>
+</div>
+
+<div class="d-flex justify-content-center m-3">
+ <%= f.submit "送信する" %>
+</div>
+<% end %>

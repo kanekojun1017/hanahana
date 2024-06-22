@@ -1,6 +1,14 @@
-<h2>Follow Users</h2>
-<% if @users.exists? %>
-  <%= render 'public/users/index', users: @users %>
-<% else %>
-  <p>ユーザーはいません</p>
-<% end %>
+<div class="d-flex justify-content-center md-3">
+  <h2>フォローユーザー</h2>
+</div>
+
+
+  <% if @users.exists? %>
+    <%= render 'public/users/index', users: @users %>
+  <% else %>
+  <div class="d-flex justify-content-center md-3">
+    <p>ユーザーはいません</p>
+  </div>
+  <% end %>
+
+

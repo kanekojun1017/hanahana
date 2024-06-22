@@ -1,9 +1,14 @@
-<h1>全ユーザー</h1>
-<ul>
-  <% @user.each do |user| %>
-    <li>
-        <%= user.name %> - <%= user.email %>
+<div class="d-flex justify-content-center md-3">
+  <h1>全ユーザー</h1>
+</div>
+<div class="d-flex justify-content-center md-3">
+  <ul>
+    <% @users.each do |user| %>
+      <li>
+        <%= image_tag user.get_profile_image(80, 80)%>・<%= user.name %> - <%= user.email %>
         <%= link_to '削除', admin_user_path(user),method: :delete, data: { confirm: '本当に削除しますか？' } %>
-    </li>
-  <% end %>
-</ul>
+      </li>
+    <% end %>
+  </ul>
+</div>
+

@@ -1,26 +1,39 @@
-<h2>Log in</h2>
+<div class="d-flex justify-content-center m-3">
+  <h2>管理者ログイン</h2>
+</div>
 
 <%= form_with model: @admin, url: session_path(resource_name), local: true do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-  
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
-
-  <% if devise_mapping.rememberable? %>
+  <div class="d-flex justify-content-center m-3">
     <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+      <%= f.label :email %><br />
+      <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
     </div>
-  <% end %>
-  
-  <div class="actions">
-    <%= f.submit "Log in" %>
   </div>
+  
+  <div class="d-flex justify-content-center m-3">
+    <div class="field">
+      <%= f.label :password %><br />
+      <%= f.password_field :password, autocomplete: "current-password" %>
+    </div>
+  </div>
+  
+  <div class="d-flex justify-content-center">
+    <% if devise_mapping.rememberable? %>
+      <div class="field">
+        <%= f.check_box :remember_me %>
+        <%= f.label :remember_me %>
+      </div>
+    <% end %>
+  </div>
+  
+  <div class="d-flex justify-content-center">
+    <div class="actions">
+      <%= f.submit "Log in" %>
+    </div>
+  </div>
+  
 <% end %>
 
-<%= render "admin/shared/links" %>
+<div class="d-flex justify-content-center m-3">
+  <%= render "admin/shared/links" %>
+</div>
