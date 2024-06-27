@@ -1,4 +1,4 @@
-name: hanahana CI/CD
+name: Rails CI/CD
 
 on:
   push:
