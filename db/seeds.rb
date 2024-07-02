@@ -11,6 +11,6 @@ Admin.create(
   reset_password_token: nil,
   reset_password_sent_at: nil,
   remember_created_at: nil,
-  created_at: Time.now,
-  updated_at: Time.now
+  created_at: Time.current,
+  updated_at: Time.current
 )
