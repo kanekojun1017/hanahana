@@ -5,12 +5,8 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-Admin.create(
-  email: 'admin@example.com',
-  encrypted_password: 'kaneko',
-  reset_password_token: nil,
-  reset_password_sent_at: nil,
-  remember_created_at: nil,
-  created_at: Time.current,
-  updated_at: Time.current
-)
+admin = Admin.find_or_create_by!(email: 'admin@example.com') do |admin|
+  admin.created_at = Time.current
+  admin.updated_at = Time.current
+  admin.password = 'kaneko'
+end
