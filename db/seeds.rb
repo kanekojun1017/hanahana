@@ -10,4 +10,3 @@ Admin.create!(
   password: 'kaneko',
   password_confirmation: 'kaneko'
   )
-  admin.profile_image.attach(io: File.open("#{Rails.root}/app/assets/images/no_image.jpg"), filename: 'no_image.jpg')
