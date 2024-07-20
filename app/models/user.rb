@@ -25,6 +25,7 @@ class User < ApplicationRecord
     find_or_create_by!(email: GUEST_USER_EMAIL) do |user|
       user.password = SecureRandom.urlsafe_base64
       user.name = "guestuser"
+      user.profile_image.attach(io: File.open("#{Rails.root}/app/assets/images/no_image.jpg"), filename: 'no_image.jpg')
     end
   end
   
