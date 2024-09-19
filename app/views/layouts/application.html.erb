@@ -14,7 +14,7 @@
   </head>
   
   <body>
-    <header class="shadow">
+    <header class="p-2 border-bottom shadow">
         <div class="container">
           <nav class="nav justify-content-end">
             <% if user_signed_in? %>
@@ -48,11 +48,11 @@
                 <%= link_to "ゲストログイン", users_guest_sign_in_path, method: :post, class: 'nav-link text-dark' %>
               </li>
         
-              <li class="nav-item ml-5">
+              <li class="nav-item ml-3">
                 <%= link_to "新規登録", new_user_registration_path, class: 'nav-link text-dark' %>
               </li>
         
-              <li class="nav-item ml-5">
+              <li class="nav-item ml-3">
                 <%= link_to "ログイン", new_user_session_path, class: 'nav-link text-dark' %>
               </li>
         
@@ -66,5 +66,4 @@
     <%= render "public/searches/form" %>
   </div>
 　  <%= yield %>
-　
 </html>
